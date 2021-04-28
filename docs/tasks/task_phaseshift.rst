@@ -44,13 +44,16 @@ Examples
 Development
    * Support for time-dependent coordinate frames and ephemeris objects
      is planned for ngCASA only. However, if greatly desired, requests for
-     such support will be considered prior to that. Please send us a HelpDesk
-     ticket should you have such a need.
+     such support will be considered prior to that. Please send us a request
+     via the Help Desk should you have such a need.
    * Specifying the new phase center in terms of an offset from
      the original phase center is currently not supported. However, if
-     there is a need for such support, it can be added. Please send us a HelpDesk
-     ticket should you have such a need.
+     there is a need for such support, it can be added. Please send us a request
+     via the Help Desk should you have such a need.
    * There is currently no support for the possible use case of updating only
      the *UVW* values but not the associated data values. This support can
-     be added if there is a need for this mode of operation. Please send us a HelpDesk
-     ticket should you have such a need.
+     be added if there is a need for this mode of operation. Please send us a
+     request via the Help Desk should you have such a need.
+
+.. raw:: html
+   :file: html/test.html
