@@ -1,4 +1,4 @@
-
+.. include:: <isogrk1.txt>
 
 .. _Description:
 
@@ -209,7 +209,7 @@ Verification
             cl.fromrecord(y['deconvolved'])
             rd = cl.getrefdir(0)
             cl.done()
-            ra_err = qa.mul(
+            ra_err = qa.div(
                         qa.div(qa.quantity(poserr['longitude']), 15), 
                         qa.cos(qa.quantity(rd['m1']))
                     )
@@ -329,14 +329,63 @@ Verification
         pixel, and that *phaseshift* is slightly more accurate, although both get very close to the
         expected result.
 
-    .. VLA_:
+        The output of the script, when run on an RHEL 7 machine, is
+
+        ::
+
+            VLA simulation:
+            Image with no shift applied
+                Simulated source position J2000 19h49m43 38d45m15
+                coordinates of max position from imstat 19:49:42.907, +38.45.13.185, I, 999980842.28Hz
+                fitted position from imfit 19:49:42.99118 ± 0.01171s +038.45.15.21608 ± 0.10346arcsec
+            Phase shifted image using phaseshift to set the phase center
+                Simulated source position J2000 19h49m43 38d45m15
+                coordinates of max position from imstat 19:49:43.000, +38.45.15.000, I, 999983449.88Hz
+                fitted position from imfit 19:49:43.000008 ± 0.001796s +038.45.14.999908 ± 0.016103arcsec
+            Phase shifted image using tclean to set phase center
+                Simulated source position J2000 19h49m43 38d45m15
+                coordinates of max position from imstat 19:49:43.000, +38.45.15.000, I, 999980842.28Hz
+                fitted position from imfit 19:49:42.989652 ± 0.001851s +038.45.14.869487 ± 0.016600arcsec
+
+            ALMA simulation:
+            Image with no shift applied
+                Simulated source position J2000 19h59m33.2 40d40m53.2
+                coordinates of max position from imstat 19:59:33.200, +40.40.53.214, I, 1.49997e+11Hz
+                fitted position from imfit 19:59:33.20002 ± 0.00002s +040.40.53.20107 ± 0.00038arcsec
+            Phase shifted image using phaseshift to set the phase center
+                Simulated source position J2000 19h59m33.2 40d40m53.2
+                coordinates of max position from imstat 19:59:33.200, +40.40.53.200, I, 1.49997e+11Hz
+                fitted position from imfit 19:59:33.20000000 ± 0.00000442s +040.40.53.19999711 ± 0.00007270arcsec
+            Phase shifted image using tclean to set phase center
+                Simulated source position J2000 19h59m33.2 40d40m53.2
+                coordinates of max position from imstat 19:59:33.200, +40.40.53.200, I, 1.49997e+11Hz
+                fitted position from imfit 19:59:33.20007214 ± 0.00000593s +040.40.53.20079661 ± 0.00009744arcsec
+
+        .. VLA_:
 
     VLA Simulation
 
-        The VLA simulation used antenna positions in the D configuration and a frequency of 1.0 GHz.
-        The resulting images had 8.0" pixels. The phase center and the source in the original MS
+        The VLA simulation uses antenna positions in the D configuration and a frequency of 1.0 GHz.
+        The resulting images have 8.0" pixels. The phase center and the source in the original MS
         were separated by about 2.7 degrees. Figure 1a shows the full image created from the
-        original MS. The point source can be seen in the lower right corner of the image.
+        original MS. The point source can be seen in the lower right corner of the image. Figure 1b 
+        shows the image created from the MS after running **phaseshift** to shift the phase center
+        to the position of the source. The contours represent the image created from the original MS,
+        and using **tclean** to shift the phase center to the source position using the *phasecenter*
+        parameter. Figure 1c is the central portion of Figure 1b.
+
+        The results (see above) indicate that source position in the image that is not phase shifted
+        is indeed as expected. The somewhat large fit errors are likely due to the fact that the
+        source is not located at the center of a pixel. The results for the image created from
+        the MS that has been produced by **phaseshift** show excellent agreement with the
+        expected source position. The fit uncertainty provides an upper limit of about 30 m"
+        (0.003 pixels) of the offset of the source from the phase center, and the best fit results
+        are two orders of magnitude better than that at about 0.1 m" (0.00002 pixels). The results
+        of the image created from the unshifted MS by applying the phase shift in **tclean** using
+        the *phasecenter* parameter are also very good, although not as good as the image made from
+        the MS created using **phaseshift**.  In this case, the offset between source and
+        phase center falls significantly outside the fit uncertainty, with a separation of about
+        0.2" (0.02 pixels).
 
         .. figure:: _apimedia/VLA_orig.png
             :alt: VLA simulated data image prior to phase shift. The source is in the lower right corner.
@@ -359,6 +408,29 @@ Verification
     .. ALMA_:
 
     ALMA Simulation
+
+        The ALMA simulation uses antenna positions in the eighth configuration of cycle 8 and a
+        frequency of 150 GHz. The resulting images have 60 m" pixels. The phase center and the
+        source in the original MS were separated by about 1.2'. Figure 2a shows the full image
+        created from the original MS. The point source can be seen in the upper left corner of
+        the image. Figure 2b shows the image created from the MS after running **phaseshift**
+        to shift the phase center to the position of the source. The contours represent the
+        image created from the original MS, and using **tclean** to shift the phase center to
+        the source position using the *phasecenter* parameter. Figure 2c is the central portion
+        of Figure 2b.
+
+        The results (see above) indicate that source position in the image that is not phase shifted
+        is indeed as expected. The somewhat large fit errors are likely due to the fact that the
+        source is not located at the center of a pixel. The results for the image created from
+        the MS that has been produced by **phaseshift** show excellent agreement with the
+        expected source position. The fit uncertainty provides an upper limit of about 90 |mgr|"
+        (0.001 pixels) of the offset of the source from the phase center, and the best fit results
+        are an order of magnitude better than that at about 3 |mgr|" (0.00005 pixels). The results
+        of the image created from the unshifted MS by applying the phase shift in **tclean** using
+        the *phasecenter* parameter are also very good, although not as good as the image made from
+        the MS created using **phaseshift**.  In this case, the offset between source and
+        phase center falls significantly outside the fit uncertainty, with a separation of about
+        1 m" (0.02 pixels).
 
         .. figure:: _apimedia/ALMA_orig.png
             :alt: ALMA simulated data image prior to phase shift. The source is in the upper left corner.
