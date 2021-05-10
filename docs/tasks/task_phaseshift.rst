@@ -35,23 +35,23 @@ Description
 .. _Examples:
 
 Examples
-   ::
+   .. code-block:: python
    
       # shift the phase center to J2000 04:52:16 -02.04.55
       # note that any valid direction syntax is supported, including
       # FRAME XXhXXmXX.Xs YYdYYmYY.Ys
       # FRAME XX.XXdeg YY.YYdeg
       # FRAME XX.XXrad YY.YYrad
-      # the longitude-like and latitude-like coordinates can have different syntaxes, existing
-      FRAME XXhXXmXX.Xs YY.YYrad
+      # the longitude-like and latitude-like coordinates can have different syntaxes, eg
+      # FRAME XXhXXmXX.Xs YY.YYrad
       phaseshift(
           vis='unshifted.ms', outvis='shifted.ms',
           phasecenter='J2000 04:52:16 -02.04.55'
       )
 
 .. _Verfication:
-Verification
-    
+
+Verification    
     The following script can be used to verify that the behavior of phaseshift is as expected.
     The details are described following the script.
 
