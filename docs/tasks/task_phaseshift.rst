@@ -10,7 +10,12 @@ Description
    with the new phase center. Many MS selection parameters are supported (see
    `Visibility Data Selections
    <../../notebooks/visibility_data_selection.ipynb>`__
-   for details). The input MS is not modified. The implementation assumes
+   for details). 
+
+   .. danger:: **ALERT:** Partial spectral window selection via the *spw* parameter (eg, spw='1:20~25') may cause errors. This issue is being investigated and will be fixed in a subsequent version of CASA. As a workaround, if you require such a selection, first specify it in and run split to create the desired selection and use the resulting MS as input to **phaseshift**.
+
+
+   The input MS is not modified. The implementation assumes
    that the *UVW* coordinates are correct in the frame in which they are
    specified; these coordinates are transformed via rotation to the new
    phase center. No attempt is made to recompute the *UVW* values because of,
