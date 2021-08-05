@@ -16,7 +16,8 @@ Description
 
    .. danger:: **ALERT:** If you intend to move the phasecenter far enough away from the antenna pointing center, please be aware that the pointing table needs to exist in the MS, for the imaging tasks to know the world coordinates at which to center primary beams. If a pointing table does not already exist, please consider simply using tclean(phasecenter='') for on-the-fly phase rotation if the intention is to anyway run imaging soon after phaseshift, as this on-the-fly operation will still use the original (unmodified) phase/pointing center and primary beams will be correctly located.
 
-   The input MS is not modified. The implementation assumes
+   The input MS is not modified, and so the *outvis* parameter must be specified; note that this
+   behavior is different from that of task *fixvis*. The implementation assumes
    that the *UVW* coordinates are correct in the frame in which they are
    specified; these coordinates are transformed via rotation to the new
    phase center. No attempt is made to recompute the *UVW* values because of,
