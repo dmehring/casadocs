@@ -380,8 +380,8 @@ Description
    +-------------------------+-------------------------------------------+
    | datamin                 | Returns image pixel data type.            |
    +-------------------------+-------------------------------------------+
-   | date-obs or epoch       | Returns string (in YYYY/MM/DD/hh:mm:ss    |
-   |                         | format).                                  |
+   | date-obs or epoch       | Returns string (in                        |
+   |                         | YYYY/MM/DD/hh:mm:ss.ssssss format).       |
    +-------------------------+-------------------------------------------+
    | equinox                 | Returns string.                           |
    +-------------------------+-------------------------------------------+
